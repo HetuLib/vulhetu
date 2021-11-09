@@ -1,0 +1,97 @@
+<html>
+<head>
+<title>搜索结果 - {dede:global.cfg_webname/}</title>
+<meta charset="{dede:global.cfg_soft_lang/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<meta http-equiv="mobile-agent" content="format=xhtml;url={dede:global.cfg_mobileurl/}/list.php?tid={dede:field.id/}">
+
+{dede:include filename="header.htm"/}
+<!-- 推荐内容 -->
+<section class="uk-section uk-section-default uk-section-smalle">
+<div class="uk-container uk-container-small">
+<div class="uk-article">
+
+<form class="uk-flex uk-flex-center">
+<div class="uk-margin " uk-margin>
+<div uk-form-custom="target: true">
+<div class="uk-navbar-item uk-search uk-search-navbar  uk-border-rounded" style="background-color: rgb(248, 248, 248);">
+<span uk-search-icon></span>
+<input name="q" class="uk-search-input" type="search" value="{dede:global name='keyword' function='RemoveXSS(@me)'/}" placeholder="在这里搜索...">
+</div>
+</div>
+&nbsp;
+<select name="searchtype" class="uk-select uk-form-width-small uk-border-rounded">
+<option value="title" selected='1'>检索标题</option>
+<option value="titlekeyword">智能模糊</option>
+</select>&nbsp;
+<button class="uk-button uk-button-primary uk-border-rounded">搜索</button>&nbsp;
+<a class="uk-button uk-button-default uk-border-rounded" href="heightsearch.php">高级搜索</a>
+</div>
+
+</form>
+<div class="uk-margin " uk-margin>
+<div class="resultbar">搜索 <strong class="fc_03c">{dede:global name='keyword' function='RemoveXSS(@me)'/}</strong> 的结果 </div>
+</div>
+
+<div style="float:right; margin:10px"><script src='{dede:global.cfg_cmsurl/}/plus/ad_js.php?aid=18' language='javascript'></script> </div>
+
+<h2>相关搜索</h2>
+
+<div class="sidebar_banner"><script src='{dede:global.cfg_cmsurl/}/plus/ad_js.php?aid=16' language='javascript'></script></div>
+</div>
+<div class="resultlist">
+<ul class="uk-list uk-list-divider">
+{dede:list perpage='20'}
+<li style="margin-bottom: 34px;"> <h3><a href="[field:arcurl/]" target="_blank">[field:title/]</a></h3>
+<p>[field:description/]...</p>
+<span>
+<a href="[field:arcurl/]">[field:global.cfg_basehost/][field:arcurl/]</a>
+<small>分类：</small><a href="[field:typeurl/]" target="_blank">[field:typename/]</a>
+<small>点击：</small>[field:click/]
+<small>日期：</small>[field:stime/]
+</span>
+</li>
+{/dede:list}
+</ul>
+
+<ul class="uk-pagination uk-flex-center" uk-margin>
+{dede:pagelist listsize='4'/}
+</ul>
+</div>
+</div>
+</section>
+<!-- /header -->
+
+
+
+<!-- 底部模板 -->
+<footer>
+<section class="uk-section uk-section-secondary uk-section-small uk-light">
+<div class="uk-container">
+<div class="uk-grid-medium uk-child-width-1-1 uk-child-width-1-2@m" uk-grid>
+<div><a class="uk-logo" href="index.html"><img src="{dede:global.cfg_assets_dir/}/img/dedecms.png" width="180px"></a>
+<p class="uk-text-small">
+<p class="uk-text-small">
+{dede:global.cfg_powerby/}&nbsp;&nbsp;{dede:global.cfg_beian/}  <br />
+<!--
+为了支持织梦团队的发展,请您保留织梦内容管理系统的链接信息.
+我们对支持织梦团队发展的朋友表示真心的感谢!织梦因您更精彩!
+-->
+Powered by <a href="http://www.dedecms.com" title="织梦内容管理系统(DedeCMS)--国内专业的PHP网站管理系统，轻松建站的利器。" target="_blank"><strong>DedeCMS_{dede:global.cfg_version/}</strong></a> &copy; 2007 - 2021 <a href="http://www.desdev.cn/" target="_blank">DesDev</a> Inc. 
+</p>
+</div>
+</div>
+</section>
+</footer>
+
+<!-- JS FILES -->
+<script src="{dede:global.cfg_assets_dir/}/pkg/uikit/js/uikit.min.js"></script>
+<script src="{dede:global.cfg_assets_dir/}/pkg/uikit/js/uikit-icons.min.js"></script>
+<script src="{dede:global.cfg_assets_dir/}/pkg/jquery/jquery.min.js"></script>
+<script src="{dede:global.cfg_assets_dir/}/js/dede.default.min.js"></script>
+<!-- /JS FILES -->
+<!-- /底部模板 -->
+<!-- /footer -->
+</body>
+</html>

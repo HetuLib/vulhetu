@@ -1,0 +1,87 @@
+<html>
+<head>
+<title>{dede:field.title/} - {dede:global.cfg_webname/}</title>
+<meta charset="{dede:global.cfg_soft_lang/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<meta http-equiv="mobile-agent" content="format=xhtml;url={dede:global.cfg_mobileurl/}/list.php?tid={dede:field.id/}">
+
+{dede:include filename="header.htm"/}
+<!-- /header -->
+<main>
+<!-- 面包屑 -->
+{dede:include filename="breadcrumb.htm"/}
+<!-- /面包屑 -->
+
+<!-- 分类信息菜单 -->
+{dede:infolink}
+
+信息附加条件：
+
+<ul class="uk-subnav uk-subnav-pill" uk-margin>
+[field:linkallplace/]
+[field:nativeplace /]
+</ul>
+
+<ul class="uk-subnav uk-subnav-pill" uk-margin>
+[field:linkalltype/]
+[field:infotype /]
+</ul>
+
+{/dede:infolink} 
+<!-- /分类信息菜单 -->
+
+<!-- 信息列表 -->
+<ul>
+{dede:list pagesize='20'}
+<li><a href="[field:arcurl/]" class="title">[field:title/]</a><span class="date">[field:pubdate function="GetDateTimeMK(@me)"/]</span></li>
+{/dede:list}
+</ul>
+<ul class="uk-pagination">
+    {dede:pagelist listitem="info,index,end,pre,next,pageno" listsize="5"/} <!-- 信息列表 > 分页 -->
+</ul>
+<!-- /信息列表 -->
+
+<!-- 信息搜索 -->
+{dede:infoguide}
+<form name='infoguide' method='get' action='/plus/list.php'>
+[field:nativeplace /]
+[field:infotype /]
+<input type='hidden' name='tid' value='[field:typeid /]' />
+<input type='hidden' name='channelid' value='-8' />
+<span class='infosearchtxt'>关键字：</span>
+<input type='text' name='keyword' value='' class="uk-input" />
+<button type="submit" class="uk-button">搜索信息</button>
+</form>
+{/dede:infoguide}
+<!-- /信息搜索 -->
+
+
+<!-- 栏目列表 -->
+<ul>
+{dede:channel type='son' currentstyle="<li><a href='~typelink~' class='thisclass'>~typename~</a></li>"}
+<li><a href='[field:typeurl/]'>[field:typename/]</a></li>
+{/dede:channel}
+</ul>
+<!-- /栏目列表 -->
+
+<!-- 最新信息 -->
+<ul>
+    {dede:arclistsg orderby='id' titlelen='60' row='10'}
+    <li><span>[field:typename/]</span><a href="[field:arcurl/]">[field:title/]</a></li>
+    {/dede:arclistsg}
+</ul>
+<!-- /最新信息 -->
+
+<!-- 热门信息 -->
+<ul>
+    {dede:arclistsg sort='click' titlelen='30' row='10'}
+    <li><span>[field:typename/]</span><a href="[field:arcurl/]">[field:title/]</a></li>
+    {/dede:arclistsg}
+</ul>
+<!-- /热门信息 -->
+</main>
+{dede:include filename="footer.htm"/}
+<!-- /footer -->
+</body>
+</html>

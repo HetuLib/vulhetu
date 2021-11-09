@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>{dede:field.title/} - {dede:global.cfg_webname/}</title>
+<meta charset="{dede:global.cfg_soft_lang/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<meta http-equiv="mobile-agent" content="format=xhtml;url={dede:global.cfg_mobileurl/}/list.php?tid={dede:field.id/}">
+
+{dede:include filename="header.htm"/}
+<!-- /header -->
+<main>
+<!-- 面包屑 -->
+{dede:include filename="breadcrumb.htm"/}
+<!-- /面包屑 -->
+
+<section class="uk-section uk-section-default uk-section-smalle">
+    <div class="uk-container uk-container-small">
+    <div class="uk-article">
+    <h2 class="uk-text-bold uk-h1 uk-margin-remove-adjacent uk-margin-remove-top">{dede:field.title/}</h2>
+    <ul class="uk-list">
+        <li><small>软件类型：</small><span>{dede:field.softtype/}</span></li>
+        <li><small>授权方式：</small><span>{dede:field.accredit/}</span></li>
+        <li><small>界面语言：</small><span>{dede:field.language/}</span></li>
+        <li><small>软件大小：</small><span>{dede:field.softsize/}</span></li>
+        <li><small>文件类型：</small><span>{dede:field.filetype/}</span></li>
+        <li><small>运行环境：</small><span>{dede:field.os/}</span></li>
+        <li><small>软件等级：</small><span>{dede:field.softrank function='GetRankStar(@me)'/}</span></li>
+        <li><small>发布时间：</small><span>{dede:field.pubdate function="GetDateMk('@me')"/}</span></li>
+        <li><small>官方网址：</small><span>{dede:field.officialurl/}</span></li>
+        <li><small>演示网址：</small><span>{dede:field.officialdemo/}</span></li>
+        <li><small>下载次数：</small><span><script src="{dede:field.phpurl/}/disdls.php?aid={dede:field.id/}" language="javascript"></script></span></li>
+    </ul>
+    
+    {dede:field.description runphp='yes'} if(@me<>'' ) @me = '<p class="uk-text-lead">'.@me.'</p>';{/dede:field.description}
+
+
+    {dede:field name='image'/}
+
+    <h5>软件介绍</h5>
+    <p class="uk-article-meta">{dede:field.introduce/}</p>
+
+    <h5>下载地址</h5>
+    <p class="uk-article-meta"> 
+        <ul class="uk-list">
+        {dede:field name='softlinks'/}
+        </ul>
+    </p>
+
+    <h5>下载说明</h5>
+    <p class="uk-article-meta"> {dede:softmsg/}</p>
+   
+
+
+    {dede:field.vote/}
+    (责任编辑：{dede:adminname/})
+    </div>
+    
+    <!-- 分页 -->
+    <ul class="uk-pagination uk-flex-center">
+    {dede:pagebreak/}
+    </ul>
+    <!-- /分页 -->
+    <ul  class="uk-pagination">
+    <li><span class='uk-margin-small-right'>{dede:prenext get='pre'/}</span></li>
+    <li class="uk-margin-auto-left"><span class='uk-margin-small-left'>{dede:prenext get='next'/}</span></li>
+    </ul>
+    </div>
+    </section>
+
+<!-- 推荐内容 -->
+<div class="uk-container uk-container-small  uk-padding">
+
+    <h4 class="uk-text-center">热门软件</h4>
+
+    <div class="uk-child-width-1-4" uk-grid>
+        {dede:arclist row='24' type='image.' orderby=click}
+        <div>
+            <a class="uk-link-muted uk-text-center uk-display-block uk-padding-small uk-box-shadow-hover-large" href="[field:arcurl/]">
+                <div class="tm-ratio tm-ratio-4-3">
+                <div class="tm-media-box">
+                <figure class="tm-media-box-wrap uk-background-cover" style="background-image: url([field:litpic/]);"></figure>
+                </div>
+                </div>
+                <div class="uk-margin-small-top">
+                <div class="uk-text-truncate">[field:title/]</div>
+                </div>
+                </a>
+        </div>
+
+
+        {/dede:arclist}
+    </div>
+</div>
+
+{dede:include filename="footer.htm"/}
+<!-- /footer -->
+</body>
+</html>

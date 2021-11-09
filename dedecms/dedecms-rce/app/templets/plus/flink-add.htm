@@ -1,0 +1,81 @@
+<html>
+<head>
+<title><?php echo $cfg_webname;?> - 申请友情链接</title>
+<meta charset="{dede:global.cfg_soft_lang/}" />
+<meta name="keywords" content="{dede:global.cfg_keywords/}" />
+<meta name="description" content="{dede:field name='description' function='html2text(@me)'/}" />
+<meta http-equiv="mobile-agent" content="format=xhtml;url={dede:global.cfg_mobileurl/}/list.php?tid={dede:field.id/}">
+{dede:include filename="plus_header.htm"/}
+<!-- /header -->
+<main>
+<!-- 面包屑 -->
+{dede:include filename="plus_breadcrumb.htm"/}
+<!-- /面包屑 -->
+<div class="uk-container">
+<div class="uk-card uk-card-small uk-card-default" style="margin-top: 40px;margin-bottom: 40px;">
+<div class="uk-card-header">
+<div class="uk-grid uk-grid-small uk-text-small">
+<div class="uk-width-expand uk-first-column">
+<span class="cat-txt">申请链接</span>
+</div>
+</div>
+</div>
+<div class="uk-card-body">
+<a href="{dede:global.cfg_phpurl/}/flink.php">查看链接</a>
+<form name="form1" method="post" action="flink.php">
+<input class="uk-input uk-form-small uk-width-large" type='hidden' name='dopost' value='save'>
+<table width="100%" class="uk-table uk-form-small">
+<tr>
+<td height="25">网址：</td>
+<td><input class="uk-input uk-form-small uk-width-large" name="url" type="text" id="url" value="http://"></td>
+</tr>
+<tr>
+<td height="25">网站名称：</td>
+<td><input class="uk-input uk-form-small uk-width-large" name="webname" type="text" id="webname"></td>
+</tr>
+<tr>
+<td height="25">网站Logo：</td>
+<td><input class="uk-input uk-form-small uk-width-large" name="logo" type="text" id="logo">
+(88*31 gif或jpg)</td>
+</tr>
+<tr>
+<td height="25">网站简况：</td>
+<td> <textarea class="uk-textarea uk-form-small uk-width-large" name="msg" cols="40" rows="4" id="msg"></textarea></td>
+</tr>
+<tr>
+<td height="25">站长Email：</td>
+<td><input class="uk-input uk-form-small uk-width-large" name="email" type="text" id="email"></td>
+</tr>
+<tr>
+<td height="25">网站类型：</td>
+<td> <select name="typeid" id="typeid" class="uk-select uk-form-small uk-width-large">
+<?php
+$dsql->SetQuery("select * from #@__flinktype");
+$dsql->Execute();
+while($row=$dsql->GetObject())
+{
+echo " <option value='".$row->id."'>".$row->typename."</option>\r\n";
+}
+?>
+</select> </td>
+</tr>
+<tr>
+<td height="25">验证码：</td>
+<td> <input class="uk-input uk-form-small uk-width-small" name="validate" type="text" id="vdcode2" style="text-transform: uppercase;"> <img src='{dede:global.cfg_phpurl/}/vdimgck.php' style="cursor:pointer" onclick="this.src=this.src+'?'" title="点击我更换图片" alt="点击我更换图片" /></td>
+</tr>
+<tr>
+<td height="51">&nbsp;</td>
+<td>
+<button type="submit" class="uk-button uk-button-small uk-button-primary">提 交</button>
+<button type="reset" class="uk-button uk-button-small">重 置</button>
+</td>
+</tr>
+</table>
+</form>
+</div>
+</div>
+</div>
+<!-- //底部模板 -->
+{dede:include filename="plus_footer.htm"/}
+</body>
+</html>

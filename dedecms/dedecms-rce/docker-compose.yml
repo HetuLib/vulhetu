@@ -1,0 +1,12 @@
+version: "2"
+
+services:
+
+  dedecms:
+    image: mattrayner/lamp:0.8.0-1804-php7
+    ports:
+      - "8080:80"
+    volumes:
+      - ${PWD}/app:/app
+      - ${PWD}/mysql:/var/lib/mysql
+
